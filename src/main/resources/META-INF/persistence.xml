@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             version="3.0"
+             xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd">
+    <persistence-unit name="learning_java_pu"
+                      transaction-type="RESOURCE_LOCAL">
+        <description>Persistence unit for the learning_java project</description>
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <!-- IMPORTANT: Add your JPA entity classes here for Hibernate to discover them. For example: -->
+        <!-- <class>com.yourpackage.Account</class> -->
+        <!-- Alternatively, to enable classpath scanning for @Entity annotated classes, add: -->
+        <class>Entities.Account</class>
+        <class>Entities.Profile</class>
+        <exclude-unlisted-classes>false</exclude-unlisted-classes>
+        <properties>
+            <property name="hibernate.archive.autodetection"
+                      value="class, hbm" />
+            <!-- Default database connection properties (these will be overridden by your Testcontainers setup in EndToEndIT) -->
+            <property name="jakarta.persistence.jdbc.driver"
+                      value="com.mysql.cj.jdbc.Driver" />
+            <property name="jakarta.persistence.jdbc.url"
+                      value="jdbc:mysql://localhost:3306/account" />
+            <property name="jakarta.persistence.jdbc.user"
+                      value="root" />
+            <property name="jakarta.persistence.jdbc.password"
+                      value="your_password" />
+            <property name="hibernate.dialect"
+                      value="org.hibernate.dialect.MySQLDialect" />
+            <property name="hibernate.connection.autocommit"
+                      value="true" />
+            <property name="hibernate.show_sql"
+                      value="true" />
+            <property name="hibernate.format_sql"
+                      value="true" />
+            <property name="hibernate.highlight_sql"
+                      value="true" />
+            <property name="hibernate.allow_update_outside_transaction"
+                      value="true" />
+            <property name="jakarta.persistence.schema-generation.database.action"
+                      value="drop-and-create" />
+        </properties>
+    </persistence-unit>
+</persistence>
